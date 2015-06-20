@@ -41,31 +41,30 @@ namespace opt {
 		}
 	};
 
-	class action {
+		class action {
 		public:
 			const action_type type;
 			const std::string object;
-			const std::string transaction_name;
 			action(action_type a, const std::string& name) : type(a), object(name) {}
-
+	
 	};
-
+	
 	class transaction {
 		friend concurrency_controller;
 		public:
 			const std::string name;
 			const std::vector<action> action_sequence;
-			const std::vector<string> read_objects, write_objects;
-			transaction(std::vector<action>& a, std::vector<string>& r, std::vector<string>& w, std::string n)
+			const std::vector<std::string> read_objects, write_objects;
+			transaction(std::vector<action>& a, std::vector<std::string>& r, std::vector<std::string>& w, std::string n)
 			: name(n), action_sequence(a), read_objects(r), write_objects(w) {}
-			timestamp get_starting_time () const {return timestamp;}
-			void set_starting_time (timestap t) {starting_time = t;}
+			timestamp get_starting_time () const {return priority;}
+			void set_starting_time (timestamp t) {priority = t;}
 			transaction_state get_state () {return state;}
 			timestamp get_timestamp() {return priority;}
 		private:
 			timestamp priority;
 			transaction_state state;
-	};
+};
 
 	class concurrency_controller {
 		public:
