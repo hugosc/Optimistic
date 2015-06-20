@@ -126,3 +126,16 @@ namespace opt {
 		}
 	}
 }
+
+static bool concurrency_controller::conflicts (const transaction& ti, const transaction& tj){
+	for (const auto ti_object : ti.write_objects) {
+        if (std::binary_search(tj.read_objects.begin(), tj.read_objects.end(), ti_object)) {
+            return true;
+    	}
+    	if (std::binary_search(tj.write_objects.begin(), tj.write_objects.end(), ti_object)) {
+            return true;
+    	}
+    }
+
+    return false;
+}
