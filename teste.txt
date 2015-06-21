@@ -1,0 +1,4 @@
+T1:r(a)r(b)w(c)r(c)
+T2:r(c)w(d)r(a)r(z)
+T300000:w(g)r(l)r(h)w(v)
+T444:r(k)r(m)w(n)r(vilma)r(t)
